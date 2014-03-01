@@ -1,0 +1,21 @@
+{% extends 'ec2/base.html' %}
+
+{% block subheader %}Instances{% endblock %}
+
+{% block ec2_body %}
+<table class='table'>
+    <tr>
+        <th>Name</th>
+        <th>Environment</th>
+        <th>Instance ID</th>
+    </tr>
+{% for instance in instances %}
+    <tr>
+        <td><a href='/ec2/instance/{{ instance.id }}'>{{ instance.name }}</a></td>
+        <td>{{ instance.env }}</td>
+        <td>{{ instance.id }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

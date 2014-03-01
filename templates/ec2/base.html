@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block sidebar %}
+<ul class="nav nav-sidebar">
+    <li><a href="/ec2">EC2 Home</a></li>
+    <li><a href="/ec2/instance">Instances</a></li>
+</ul>
+{% endblock %}
+
+{% block body %}
+  <h1>EC2 <small>{% block subheader %}{% endblock %}</small></h1>
+  {% block ec2_body %}
+
+  {% endblock %}
+{% endblock %}
