@@ -22,4 +22,4 @@ python manage.py syncdb
 python manage.py runserver
 ```
 
-5. Start AWSomering, go to (http://localhost:8000) in your browser
+5. Start AWSomering, go to [http://localhost:8000](http://localhost:8000) in your browser
