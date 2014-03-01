@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.cache import cache_page
 import boto.ec2
 
@@ -31,10 +31,11 @@ def instance(request, instance_id):
             conn.reboot_instances(instance_ids=[instance_id,])
         elif '_shutdown' in request.POST:
             conn.stop_instances(instance_ids=[instance_id,])
-        if '_start' in request.POST:
+        elif '_start' in request.POST:
             conn.start_instances(instance_ids=[instance_id,])
-        if '_terminate' in request.POST:
+        elif '_terminate' in request.POST:
             conn.terminate_instances(instance_ids=[instance_id,])
+        return redirect('/ec2/instance/' + instance_id)
 
     reservation = conn.get_all_instances(instance_ids=[instance_id])[0]
     instance = reservation.instances[0]
