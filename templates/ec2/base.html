@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 
-{% block sidebar %}
-<ul class="nav nav-sidebar">
-    <li><a href="/ec2/instance">Instances</a></li>
-</ul>
+{% block ec2_sidebar %}
+<li class="active"><a href="/ec2">EC2</a></li>
+<li><ul>
+  <li><a href="/ec2/instance">Instances</a></li>
+</li></ul>
 {% endblock %}
 
 {% block body %}
