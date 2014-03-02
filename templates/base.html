@@ -1,4 +1,13 @@
 <!DOCTYPE html>
+{% load macros %}
+{% macro linkblock %}
+  {% block ec2_linkblock %}
+  <li><a href="/ec2">EC2</a></li>
+  {% endblock %}
+  {% block sqs_linkblock %}
+  <li><a href="/sqs">SQS</a></li>
+  {% endblock %}
+{% endmacro %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -38,12 +47,11 @@
           <a class="navbar-brand" href="/">AWSomer</a>
         </div>
         <div class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
+          <ul class="nav navbar-nav navbar-mobile-only">
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Services <b class="caret"></b></a>
               <ul class="dropdown-menu">
-                <li><a href="/ec2">EC2</a></li>
-                <li><a href="/sqs">SQS</a></li>
+                {% usemacro linkblock %}
               </ul>
             </li>
           </ul>
@@ -59,12 +67,7 @@
         <div class="col-sm-3 col-md-2 sidebar">
            <ul class="nav nav-sidebar">
             <li><a href="/">Home</a></li>
-            {% block ec2_sidebar %}
-            <li><a href="/ec2">EC2</a></li>
-            {% endblock %}
-            {% block sqs_sidebar %}
-            <li><a href="/sqs">SQS</a></li>
-            {% endblock %}
+            {% usemacro linkblock %}
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">

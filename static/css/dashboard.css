@@ -94,3 +94,11 @@ body {
   display: inline-block;
   border-radius: 50%;
 }
+
+.navbar-collapse .navbar-mobile-only {
+  display: none;
+}
+
+.navbar-collapse.in .navbar-mobile-only {
+  display: inline;
+}
