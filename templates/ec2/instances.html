@@ -1,15 +1,21 @@
 {% extends 'ec2/base.html' %}
 
+{% block extra_head %}
+{% endblock %}
+
 {% block subheader %}Instances{% endblock %}
 
 {% block ec2_body %}
 <table class='table table-hover'>
+    <thead>
     <tr>
         <th>Name</th>
         <th>Environment</th>
         <th>State</th>
         <th>Instance ID</th>
     </tr>
+    </thead>
+    <tbody>
 {% for instance in instances %}
     <tr>
         <td><a href='/ec2/instance/{{ instance.id }}'>{{ instance.name }}</a></td>
@@ -18,6 +24,7 @@
         <td>{{ instance.id }}</td>
     </tr>
 {% endfor %}
+    </tbody>
 </table>
 
 {% endblock %}

@@ -14,12 +14,15 @@
 <div class="row">
     <h3>Records</h3>
     <table class="table table-hover">
+    <thead>
         <tr>
             <th>Name</th>
             <th>Type</th>
             <th>Value</th>
             <th>TTL</th>
         </tr>
+    </thead>
+    <tbody>
         {% for record in records %}
         <tr>
             <td>{{ record.name }}</td>
@@ -28,6 +31,7 @@
             <td>{{ record.ttl }}</td>
         </tr>
         {% endfor %}
+    <tbody>
     </table>
 </div>
 {% endblock %}
