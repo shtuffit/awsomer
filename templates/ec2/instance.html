@@ -1,4 +1,5 @@
 {% extends 'ec2/base.html' %}
+{% block subheader %}Instance{% endblock %}
 
 {% block ec2_body %}
 <h2>{{ instance.tags.Name }} <small>{{ instance.tags.Environment }}</small></h2>
