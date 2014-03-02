@@ -2,9 +2,11 @@
 AWSomer (pronounced awesomer) is a AWS dashboard built on Django 1.6. The only requirements should be django, boto and having boto configured corectly. AWSomer is still under heavy development, please let me know any issues you have or you would like to see added [here](https://github.com/shtuffit/awsomer/issues) 
 
 ##Services
-* EC2
-* Route53
-* SQS
+| Service | Features                             |
+|:-------:|:-------------------------------------|
+| EC2     | Display Details, Power Actions       |
+| Route53 | Display Hosted Zones and Record Sets |
+| SQS     | Display queues and depth             |
 
 ##Setup
 1. Clone the AWSomer repo
