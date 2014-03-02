@@ -22,7 +22,7 @@
     <table class="table table-hover">
         <tr><th>Name</th><td>{{ instance.tags.Name }}</td></tr>
         <tr><th>Environment</th><td>{{ instance.tags.Environment }}</td></tr>
-        <tr><th>State</th><td>{{ instance.state }}</td></tr>
+        <tr><th>State</th><td class='{% if instance.state == 'running' %}success{% elif instance.state == 'stopped' %}active{% else %}danger{% endif %}'>{{ instance.state }}</td></tr>
         <tr><th>Instance Type</th><td>{{ instance.instance_type }}</td></tr>
         <tr><th>Architecture</th><td>{{ instance.architecture }}</td></tr>
         <tr><th>SSH Key</th><td>{{ instance.key_name }}</td></tr>

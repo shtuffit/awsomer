@@ -1,0 +1,19 @@
+{% extends 'sqs/base.html' %}
+{% load humanize %}
+
+{% block sqs_body %}
+<h2>{{ queue.name }}</small></h2>
+<br>
+<div class="row">
+    <h3>Queue Details</h3>
+    <table class="table table-hover">
+        <tr><th>Name</th><td>{{ queue.name }}</td></tr>
+        <tr><th>Message Count</th><td>{{ queue.ApproximateNumberOfMessages }}</td></tr>
+        <tr><th>Messages in Flight</th><td>{{ queue.ApproximateNumberOfMessagesNotVisible }}</td></tr>
+	<tr><th>Message Retention Period</th><td>{% widthratio queue.MessageRetentionPeriod 86400 1 %} Days</td></tr>
+        <tr><th>Max Message Size</th><td>{% widthratio queue.MaximumMessageSize 1024 1 %} KB</td></tr>
+    </table>
+</div>
+
+
+{% endblock %}

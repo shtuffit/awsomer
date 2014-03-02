@@ -16,6 +16,7 @@ def instances(request):
         instance = res.instances[0]
         item['name'] = instance.tags['Name']
         item['env'] = instance.tags['Environment']
+        item['state'] = instance.state
         item['id'] = instance.id
         instances.append(item)
 

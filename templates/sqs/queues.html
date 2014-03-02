@@ -1,0 +1,21 @@
+{% extends 'sqs/base.html' %}
+
+{% block subheader %}Queues{% endblock %}
+
+{% block sqs_body %}
+<table class='table table-hover'>
+    <tr>
+        <th>Name</th>
+        <th>Message Count</th>
+        <th>In Flight</th>
+    </tr>
+{% for queue in queues %}
+    <tr>
+        <td><a href='/sqs/queue/{{ queue.name }}'>{{ queue.name }}</a></td>
+        <td>{{ queue.attrib.ApproximateNumberOfMessages }}</td>
+        <td>{{ queue.attrib.ApproximateNumberOfMessagesNotVisible }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

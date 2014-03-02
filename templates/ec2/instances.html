@@ -3,16 +3,18 @@
 {% block subheader %}Instances{% endblock %}
 
 {% block ec2_body %}
-<table class='table'>
+<table class='table table-hover'>
     <tr>
         <th>Name</th>
         <th>Environment</th>
+        <th>State</th>
         <th>Instance ID</th>
     </tr>
 {% for instance in instances %}
     <tr>
         <td><a href='/ec2/instance/{{ instance.id }}'>{{ instance.name }}</a></td>
         <td>{{ instance.env }}</td>
+        <td class='{% if instance.state == 'running' %}success{% elif instance.state == 'stopped' %}active{% else %}danger{% endif %}'>{{ instance.state }}</td>
         <td>{{ instance.id }}</td>
     </tr>
 {% endfor %}
