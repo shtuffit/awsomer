@@ -21,7 +21,6 @@ def queues(request):
         })  
 
 def queue(request, queue_name):
-    print queue_name
     conn = connector()
     queue = conn.get_all_queues(prefix=queue_name)[0]
 

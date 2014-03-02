@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block route53_linkblock %}
+<li class="active"><a href="/route53">Route53</a></li>
+<li><ul>
+  <li><a href="/route53/zone">Zones</a></li>
+</li></ul>
+{% endblock %}
+
+{% block body %}
+  <h1>Route53 <small>{% block subheader %}{% endblock %}</small></h1>
+  {% block route53_body %}
+
+  {% endblock %}
+{% endblock %}

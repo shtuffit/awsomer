@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'awsomer',
     'ec2',
+    'route53',
     'sqs',
 )
 

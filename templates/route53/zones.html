@@ -1,0 +1,21 @@
+{% extends 'route53/base.html' %}
+
+{% block subheader %}Zones{% endblock %}
+
+{% block route53_body %}
+<table class='table table-hover'>
+    <tr>
+        <th>Name</th>
+        <th>Record Count</th>
+        <th>ID</th>
+    </tr>
+{% for zone in zones %}
+    <tr>
+        <td><a href='/route53/zone/{{ zone.id }}'>{{ zone.name }}</a></td>
+        <td>{{ zone.count }}</td>
+        <td>{{ zone.id }}</td>
+    </tr>
+{% endfor %}
+</table>
+
+{% endblock %}

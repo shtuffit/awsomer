@@ -1,0 +1,33 @@
+{% extends 'route53/base.html' %}
+{% block subheader %}Zone{% endblock %}
+{% load humanize %}
+
+{% block route53_body %}
+<h2>{{ zone.Name }}</small></h2>
+<br>
+<div class="row">
+    <h3>Zone Details</h3>
+    <table class="table table-hover">
+        <tr><th>Name</th><td>{{ zone.Name }}</td></tr>
+    </table>
+</div>
+<div class="row">
+    <h3>Records</h3>
+    <table class="table table-hover">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Value</th>
+            <th>TTL</th>
+        </tr>
+        {% for record in records %}
+        <tr>
+            <td>{{ record.name }}</td>
+            <td>{{ record.type }}</td>
+            <td>{{ record.to_print }}</td>
+            <td>{{ record.ttl }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+{% endblock %}
