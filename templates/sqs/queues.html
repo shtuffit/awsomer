@@ -19,8 +19,7 @@
         <td>{{ queue.attrib.ApproximateNumberOfMessages }}</td>
         <td>{{ queue.attrib.ApproximateNumberOfMessagesNotVisible }}</td>
         {% else %}
-        <td></td>
-        <td></td>
+        <td colspan=2>Attribute collection error</td>
         {% endif %}
     </tr>
 {% endfor %}
