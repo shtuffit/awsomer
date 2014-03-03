@@ -30,6 +30,12 @@ def queue(request, queue_name):
     conn = connector()
     queue = conn.get_all_queues(prefix=queue_name)[0]
     if request.POST:
+        if '_clear' in request.POST:
+            queue.clear()
+            return redirect('/sqs/queue/' + queue_name)
+        elif '_delete' in request.POST:
+            queue.delete()
+            return redirect('/sqs/queue/')
         form = AddMessageForm(request.POST)
         if form.is_valid():
             m = Message()

@@ -5,6 +5,13 @@
 {% block sqs_body %}
 <h2>{{ queue.name }}</small></h2>
 <br>
+    <form action="" method="post">
+        {% csrf_token %}
+    
+        <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to clear all of the mssages in {{ queue.name }}?');" name="_clear">Clear All Messages</button>
+        <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to delete {{ queue.name }}?');" name="_delete">Delete</button>
+    </form>
+
 <div class="row">
     <h3>Queue Details</h3>
     <table class="table table-hover">
