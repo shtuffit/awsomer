@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.cache import cache_page
 from .forms import *
+from boto.exception import SQSError
 import boto.sqs
 from boto.sqs.message import Message
 
