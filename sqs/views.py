@@ -15,7 +15,10 @@ def queues(request):
     for que in ques:
         item = {}
         item['name'] = que.name 
-        item['attrib'] = que.get_attributes()
+        try:
+            item['attrib'] = que.get_attributes()
+        except SQSError:
+            pass
         queues.append(item)
 
     return render(request, 'sqs/queues.html', {

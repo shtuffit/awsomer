@@ -15,8 +15,13 @@
     <tbody>
     <tr>
         <td><a href='/sqs/queue/{{ queue.name }}'>{{ queue.name }}</a></td>
+        {% if queue.attrib %}
         <td>{{ queue.attrib.ApproximateNumberOfMessages }}</td>
         <td>{{ queue.attrib.ApproximateNumberOfMessagesNotVisible }}</td>
+        {% else %}
+        <td></td>
+        <td></td>
+        {% endif %}
     </tr>
 {% endfor %}
     </tbody>
