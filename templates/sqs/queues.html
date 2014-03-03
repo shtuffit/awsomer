@@ -25,5 +25,18 @@
 {% endfor %}
     </tbody>
 </table>
+<div class="row">
+    <h3>Add Queue</h3>
+    <form action="/sqs/queue/" method="post">{% csrf_token %}
+    <table class='table'>
+    {% for field in form %}
+        <tr>
+            <td>{{ field.label_tag }}</td><td>{{ field }}</td><td>{{ field.errors }}</td>
+        </tr>
+    {% endfor %}
+    <td></td><td><input class='btn' type="submit" value="Submit" /></td>
+    </table>
+    </form>
+</div>
 
 {% endblock %}

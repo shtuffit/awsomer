@@ -11,6 +11,9 @@
         {% csrf_token %}
     
         <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to clear all of the mssages in {{ queue.name }}?');" name="_clear">Clear All Messages</button>
+{% comment %} Waiting for S3 integration
+        <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to dump all of the mssages in {{ queue.name }} it S3?');" name="_dump">Dump Queue to S3</button>
+{% endcomment %}
         <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to delete {{ queue.name }}?');" name="_delete">Delete</button>
     </form>
 </div>

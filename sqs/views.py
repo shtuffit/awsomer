@@ -11,6 +11,11 @@ def connector(region='us-east-1'):
 
 def queues(request):
     conn = connector()
+    if request.POST:
+        form = AddQueueForm(request.POST)
+        if form.is_valid():
+            conn.create_queue(form.cleaned_data['name'])
+            return redirect('/sqs/queue/' + form.cleaned_data['name'])
     queues = []
     ques = conn.get_all_queues()
     for que in ques:
@@ -22,7 +27,9 @@ def queues(request):
             pass
         queues.append(item)
 
+    form = AddQueueForm()
     return render(request, 'sqs/queues.html', {
+            'form': form,
             'queues': queues
         })  
 
@@ -33,6 +40,9 @@ def queue(request, queue_name):
         if '_clear' in request.POST:
             queue.clear()
             return redirect('/sqs/queue/' + queue_name)
+        # will have to wait for s3 integration
+        #if '_dump' in request.POST:
+        #    queue.save_to_s3('sqs_dump')
         elif '_delete' in request.POST:
             queue.delete()
             return redirect('/sqs/queue/')
