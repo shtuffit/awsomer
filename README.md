@@ -17,14 +17,35 @@ git clone https://github.com/shtuffit/awsomer.git
 pip install Django boto
 ```
 
-3. Sync the database 
+3. Comment out unused services in awsomer/setttings.py INSTALLED_APPS to keep them from appearing in Navs
+```
+...
+INSTALLED_APPS = (
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.humanize',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'awsomer',
+    'ec2',
+    'route53',
+#    'sqs',
+)
+...
+```
+
+4. Sync the database 
 ```
 python manage.py syncdb
 ```
 
-4. Run the project
+5. Run the project
 ```
 python manage.py runserver
 ```
 
-5. Start AWSomering, go to [http://localhost:8000](http://localhost:8000) in your browser
+6. Start AWSomering, go to [http://localhost:8000](http://localhost:8000) in your browser
+
+

@@ -1,15 +1,21 @@
 <!DOCTYPE html>
 {% load macros %}
 {% macro linkblock %}
+{% if 'ec2' in INSTALLED_APPS %}
   {% block ec2_linkblock %}
   <li><a href="/ec2">EC2</a></li>
   {% endblock %}
+{% endif %}
+{% if 'route53' in INSTALLED_APPS %}
   {% block route53_linkblock %}
   <li><a href="/route53">Route53</a></li>
   {% endblock %}
+{% endif %}
+{% if 'sqs' in INSTALLED_APPS %}
   {% block sqs_linkblock %}
   <li><a href="/sqs">SQS</a></li>
   {% endblock %}
+{% endif %}
 {% endmacro %}
 <html lang="en">
   <head>
