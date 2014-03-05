@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 import boto.route53
 from .route53 import connector, zone_clone
 from .forms import AddHostedZoneForm, CloneZoneForm
+from time import sleep
 
 def zones(request):
     conn = connector()
@@ -41,6 +42,7 @@ def zone(request, zone_id):
             zoneB = conn.create_hosted_zone(form.cleaned_data['name'], comment=form.cleaned_data['comment'])['CreateHostedZoneResponse'] 
             newobj = conn.get_zone(zoneB['HostedZone']['Name'])
             zone_clone(obj, newobj)
+            sleep(5)
             return redirect('/route53/zones/' + zoneB.id)
 
 
