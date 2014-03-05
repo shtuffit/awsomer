@@ -6,3 +6,9 @@ class AddHostedZoneForm(forms.Form):
 
 class AddRecordForm(forms.Form):
     name = forms.CharField()
+
+class CloneZoneForm(forms.Form):
+    name = forms.CharField()
+    comment = forms.CharField(required=False)
+
+

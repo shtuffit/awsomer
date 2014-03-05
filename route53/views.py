@@ -1,7 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import boto.route53
-from .route53 import connector
-from .forms import AddHostedZoneForm
+from .route53 import connector, zone_clone
+from .forms import AddHostedZoneForm, CloneZoneForm
 
 def zones(request):
     conn = connector()
@@ -30,10 +30,25 @@ def zones(request):
 def zone(request, zone_id):
     conn = connector()
     zone = conn.get_hosted_zone(zone_id)['GetHostedZoneResponse']
+    obj = conn.get_zone(zone['HostedZone']['Name'])
+
+    if request.POST:
+        if '_delete' in request.POST:
+            obj.delete()
+            return redirect('/route53/zones/')
+        form = CloneZoneForm(request.POST)
+        if form.is_valid():
+            zoneB = conn.create_zone(form.cleaned_data['name']) 
+            zone_clone(zoneA, zoneB)
+            return redirect('/route53/zones/' + zoneB.id)
+
+
     records = conn.get_all_rrsets(zone_id)
+    form = CloneZoneForm()
 
     return render(request, 'route53/zone.html', {
             'zone': zone,
             'records': records,
+            'form': form,
         })  
 
