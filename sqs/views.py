@@ -4,7 +4,7 @@ from .forms import *
 from .sqs import connector
 from boto.exception import SQSError
 import boto.sqs
-from boto.sqs.message import Message
+from boto.sqs.message import RawMessage
 
 def queues(request):
     conn = connector()
@@ -45,7 +45,7 @@ def queue(request, queue_name):
             return redirect('/sqs/queues/')
         form = AddMessageForm(request.POST)
         if form.is_valid():
-            m = Message()
+            m = RawMessage()
             m.set_body(form.cleaned_data['message']) 
             count = form.cleaned_data['count']
             while count: 
