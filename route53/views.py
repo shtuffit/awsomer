@@ -39,7 +39,7 @@ def zone(request, zone_id):
         form = CloneZoneForm(request.POST)
         if form.is_valid():
             zoneB = conn.create_zone(form.cleaned_data['name']) 
-            zone_clone(zoneA, zoneB)
+            zone_clone(obj, zoneB)
             return redirect('/route53/zones/' + zoneB.id)
 
 
