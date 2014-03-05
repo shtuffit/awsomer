@@ -36,7 +36,7 @@ def instance(request, instance_id):
             conn.start_instances(instance_ids=[instance_id,])
         elif '_terminate' in request.POST:
             conn.terminate_instances(instance_ids=[instance_id,])
-        return redirect('/ec2/instance/' + instance_id)
+        return redirect('/ec2/instances/' + instance_id)
 
     reservation = conn.get_all_instances(instance_ids=[instance_id])[0]
     instance = reservation.instances[0]

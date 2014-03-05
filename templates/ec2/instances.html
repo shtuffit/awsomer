@@ -18,7 +18,7 @@
     <tbody>
 {% for instance in instances %}
     <tr>
-        <td><a href='/ec2/instance/{{ instance.id }}'>{{ instance.name }}</a></td>
+        <td><a href='/ec2/instances/{{ instance.id }}'>{{ instance.name }}</a></td>
         <td>{{ instance.env }}</td>
         <td class='{% if instance.state == 'running' %}success{% elif instance.state == 'stopped' %}active{% else %}danger{% endif %}'>{{ instance.state }}</td>
         <td>{{ instance.id }}</td>
