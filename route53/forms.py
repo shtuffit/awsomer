@@ -8,7 +8,7 @@ class AddRecordForm(forms.Form):
     name = forms.CharField()
 
 class CloneZoneForm(forms.Form):
-    name = forms.CharField()
+    name = forms.CharField(label="New Zone Domain")
     comment = forms.CharField(required=False)
 
 
