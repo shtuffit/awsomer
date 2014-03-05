@@ -1,13 +1,10 @@
 from django.shortcuts import render, redirect
 from django.views.decorators.cache import cache_page
 from .forms import *
+from .sqs import connector
 from boto.exception import SQSError
 import boto.sqs
 from boto.sqs.message import Message
-
-def connector(region='us-east-1'):
-    conn = boto.sqs.connect_to_region(region)
-    return conn
 
 def queues(request):
     conn = connector()
@@ -15,7 +12,7 @@ def queues(request):
         form = AddQueueForm(request.POST)
         if form.is_valid():
             conn.create_queue(form.cleaned_data['name'])
-            return redirect('/sqs/queue/' + form.cleaned_data['name'])
+            return redirect('/sqs/queues/' + form.cleaned_data['name'])
     queues = []
     ques = conn.get_all_queues()
     for que in ques:
@@ -39,13 +36,13 @@ def queue(request, queue_name):
     if request.POST:
         if '_clear' in request.POST:
             queue.clear()
-            return redirect('/sqs/queue/' + queue_name)
+            return redirect('/sqs/queues/' + queue_name)
         # will have to wait for s3 integration
         #if '_dump' in request.POST:
         #    queue.save_to_s3('sqs_dump')
         elif '_delete' in request.POST:
             queue.delete()
-            return redirect('/sqs/queue/')
+            return redirect('/sqs/queues/')
         form = AddMessageForm(request.POST)
         if form.is_valid():
             m = Message()
@@ -54,7 +51,7 @@ def queue(request, queue_name):
             while count: 
                 queue.write(m)
                 count -= 1
-            return redirect('/sqs/queue/' + queue_name)
+            return redirect('/sqs/queues/' + queue_name)
     else:
         form = AddMessageForm()
 

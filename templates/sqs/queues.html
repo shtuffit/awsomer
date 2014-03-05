@@ -14,7 +14,7 @@
 {% for queue in queues %}
     <tbody>
     <tr>
-        <td><a href='/sqs/queue/{{ queue.name }}'>{{ queue.name }}</a></td>
+        <td><a href='/sqs/queues/{{ queue.name }}'>{{ queue.name }}</a></td>
         {% if queue.attrib %}
         <td>{{ queue.attrib.ApproximateNumberOfMessages }}</td>
         <td>{{ queue.attrib.ApproximateNumberOfMessagesNotVisible }}</td>
@@ -27,7 +27,7 @@
 </table>
 <div class="row">
     <h3>Add Queue</h3>
-    <form action="/sqs/queue/" method="post">{% csrf_token %}
+    <form action="/sqs/queues/" method="post">{% csrf_token %}
     <table class='table'>
     {% for field in form %}
         <tr>

@@ -1,13 +1,18 @@
-from django.shortcuts import render, redirect
-from django.views.decorators.cache import cache_page
+from django.shortcuts import render
 import boto.route53
-
-def connector(region='us-east-1'):
-    conn = boto.route53.connect_to_region(region)
-    return conn
+from .route53 import connector
+from .forms import AddHostedZoneForm
 
 def zones(request):
     conn = connector()
+    if request.POST:
+        form = AddHostedZoneForm(request.POST)
+        if form.is_valid():
+            conn.create_hosted_zone(form.cleaned_data['name']) 
+            return redirect('/route53/zones/' + zone.id)
+    else:
+        form = AddHostedZoneForm()
+
     zonelist = []
     zones = conn.get_zones()
     for zone in zones:
@@ -18,7 +23,8 @@ def zones(request):
         zonelist.append(item)
 
     return render(request, 'route53/zones.html', {
-            'zones': zonelist
+            'zones': zonelist,
+            'form': form,
         })  
 
 def zone(request, zone_id):
