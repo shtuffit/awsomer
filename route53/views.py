@@ -38,7 +38,7 @@ def zone(request, zone_id):
             return redirect('/route53/zones/')
         form = CloneZoneForm(request.POST)
         if form.is_valid():
-            zoneB = conn.create_hosted_zone(form.cleaned_data['name'], comment=form.cleaned_data['comment'])['GetHostedZoneResponse'] 
+            zoneB = conn.create_hosted_zone(form.cleaned_data['name'], comment=form.cleaned_data['comment'])['CreateHostedZoneResponse'] 
             newobj = conn.get_zone(zoneB['HostedZone']['Name'])
             zone_clone(obj, newobj)
             return redirect('/route53/zones/' + zoneB.id)
