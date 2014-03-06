@@ -19,3 +19,6 @@ def zone_clone(source, dest):
           change = changes.add_change("CREATE", new, record.type, record.ttl)
           change.add_value(record.to_print())
     changes.commit()
+
+def addrecord(zone, name, recordtype, value, ttl): 
+    zone.add_record(recordtype, name, value, ttl=ttl)
