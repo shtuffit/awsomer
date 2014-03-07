@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block cloudfront_linkblock %}
+<li class="active"><a href="/cloudfront">CloudFront</a></li>
+<li><ul>
+  <li><a href="/cloudfront/distributions">Distributions</a></li>
+</li></ul>
+{% endblock %}
+
+{% block body %}
+  <h1>CloudFront <small>{% block subheader %}{% endblock %}</small></h1>
+  {% block cloudfront_body %}
+
+  {% endblock %}
+{% endblock %}

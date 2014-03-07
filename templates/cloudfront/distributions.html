@@ -1,0 +1,31 @@
+{% extends 'cloudfront/base.html' %}
+
+{% block subheader %}Distributions{% endblock %}
+
+{% block cloudfront_body %}
+<table class='table table-hover sortable'>
+    <thead>
+    <tr>
+        <th>Domain</th>
+        <th>CNAMES</th>
+        <th>Comment</th>
+        <th>Origin</th>
+        <th>Status</th>
+        <th>ID</th>
+    </tr>
+    </thead>
+{% for distribution in distributions %}
+    <tbody>
+    <tr>
+        <td><a href='/cloudfront/distributions/{{ distribution.id }}'>{{ distribution.domain_name }}</a></td>
+        <td>{% for cname in distribution.cnames %}{{ cname }}{% if not forloop.last %}<br>{% endif %}{% endfor %}</td>
+        <td>{{ distribution.comment }}</td>
+        <td>{{ distribution.origin.dns_name }}</td>
+        <td>{{ distribution.status }}</td>
+        <td>{{ distribution.id }}</td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'awsomer',
+    'cloudfront',
     'ec2',
     'route53',
     'sqs',

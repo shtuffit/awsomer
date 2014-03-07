@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 {% load macros %}
 {% macro linkblock %}
+{% if 'cloudfront' in INSTALLED_APPS %}
+  {% block cloudfront_linkblock %}
+  <li><a href="/cloudfront">CloudFront</a></li>
+  {% endblock %}
+{% endif %}
 {% if 'ec2' in INSTALLED_APPS %}
   {% block ec2_linkblock %}
   <li><a href="/ec2">EC2</a></li>
