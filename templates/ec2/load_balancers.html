@@ -1,0 +1,24 @@
+{% extends 'ec2/base.html' %}
+
+{% block extra_head %}
+{% endblock %}
+
+{% block subheader %}Load Balancers{% endblock %}
+
+{% block ec2_body %}
+<table class='table table-hover sortable'>
+    <thead>
+    <tr>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+{% for lb in lbs %}
+    <tr>
+        <td><a href='/ec2/load-balancers/{{ lb.name }}'>{{ lb.name }}</a></td>
+    </tr>
+{% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

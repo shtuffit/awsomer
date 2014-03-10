@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.views.decorators.cache import cache_page
 from .forms import *
 from .cloudfront import connector
 import boto.cloudfront

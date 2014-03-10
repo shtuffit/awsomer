@@ -1,0 +1,20 @@
+{% extends 'ec2/base.html' %}
+{% block subheader %}Load Balancer{% endblock %}
+
+{% block ec2_body %}
+<div class="row">
+<h2>{{ lb.Name }}</h2>
+</div>
+<div class="row">
+    <h3>AWS Details</h3>
+    <table class="table table-hover">
+        <tr><th>Name</th><td>{{ lb.name }}</td></tr>
+        <tr><th>DNS Name</th><td>{{ lb.dns_name }}</td></tr>
+        <tr><th>Listeners</th><td>{% for listener in lb.listeners %}{{ listener.0 }}</a></br>{% endfor %}</td></tr>
+        <tr><th>Created</th><td>{{ lb.created_time }}</td></tr>
+        <tr><th>Instances</th><td>{% for instance in lb.instances %}<a href="/ec2/instances/{{ instance.id }}">{{ instance.id }}</a></br>{% endfor %}</td></tr>
+    </table>
+</div>
+
+
+{% endblock %}

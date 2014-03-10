@@ -1,9 +1,7 @@
 from django.shortcuts import render, redirect
-from django.views.decorators.cache import cache_page
 import boto.ec2
-from .ec2 import connector, reboot, shutdown, start, terminate
+from .ec2 import * 
 
-@cache_page(5)
 def instances(request):
     conn = connector()
     instances = []
@@ -21,7 +19,6 @@ def instances(request):
             'instances': instances
         })  
 
-@cache_page(5)
 def instance(request, instance_id):
     if request.POST:
         if '_reboot' in request.POST:
@@ -42,3 +39,18 @@ def instance(request, instance_id):
             'instance': instance
         })  
 
+def load_balancers(request):
+    conn = elb_connector()
+    lbs = conn.get_all_load_balancers()
+
+    return render(request, 'ec2/load_balancers.html', {
+            'lbs': lbs
+        })  
+
+def load_balancer(request, lb_name):
+    conn = elb_connector()
+    lb = conn.get_all_load_balancers(load_balancer_names=[lb_name])[0]
+
+    return render(request, 'ec2/load_balancer.html', {
+            'lb': lb
+        })  
