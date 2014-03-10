@@ -9,8 +9,14 @@ def instances(request):
     for res in reservations:
         item = {}
         instance = res.instances[0]
-        item['name'] = instance.tags['Name']
-        item['env'] = instance.tags['Environment']
+        try:
+            item['name'] = instance.tags['Name']
+        except:
+            item['name'] = ""
+        try:
+            item['env'] = instance.tags['Environment']
+        except:
+            item['env'] = ""
         item['state'] = instance.state
         item['id'] = instance.id
         instances.append(item)
