@@ -11,6 +11,11 @@
   <li><a href="/ec2">EC2</a></li>
   {% endblock %}
 {% endif %}
+{% if 'rds' in INSTALLED_APPS %}
+  {% block rds_linkblock %}
+  <li><a href="/rds">RDS</a></li>
+  {% endblock %}
+{% endif %}
 {% if 'route53' in INSTALLED_APPS %}
   {% block route53_linkblock %}
   <li><a href="/route53">Route53</a></li>

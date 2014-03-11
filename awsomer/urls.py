@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     url(r'^cloudfront/', include('cloudfront.urls')),
     url(r'^ec2/', include('ec2.urls')),
     url(r'^route53/', include('route53.urls')),
+    url(r'^rds/', include('rds.urls')),
     url(r'^sqs/', include('sqs.urls')),
 
     url(r'^admin/', include(admin.site.urls)),

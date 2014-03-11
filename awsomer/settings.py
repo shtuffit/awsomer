@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     'cloudfront',
     'ec2',
     'route53',
+    'rds',
     'sqs',
 )
 
