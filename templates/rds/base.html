@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block rds_linkblock %}
+<li class="active"><a href="/rds">RDS</a></li>
+<li><ul>
+  <li><a href="/rds/instances">Instances</a></li>
+</li></ul>
+{% endblock %}
+
+{% block body %}
+  <h1>RDS <small>{% block subheader %}{% endblock %}</small></h1>
+  {% block rds_body %}
+
+  {% endblock %}
+{% endblock %}

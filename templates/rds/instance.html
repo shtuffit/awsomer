@@ -1,0 +1,26 @@
+{% extends 'rds/base.html' %}
+{% block subheader %}Instance{% endblock %}
+{% load humanize %}
+
+{% block rds_body %}
+<div class="row">
+<h2>{{ instance.DBInstanceIdentifier }}</small></h2>
+</div>
+<div class="row">
+    <h3>Instance Details</h3>
+    <table class="table table-hover">
+        <tr><th>Name</th><td>{{ instance.DBInstanceIdentifier }}</td></tr>
+        <tr><th>Engine</th><td>{{ instance.Engine }} {{ instance.EngineVersion }}</td></tr>
+        <tr><th>Endpoint</th><td>{{ instance.Endpoint.Address }}:{{ instance.Endpoint.Port }}</td></tr>
+        <tr><th>Allocated Storage</th><td>{{ instance.AllocatedStorage }}</td></tr>
+        <tr><th>Provisioned IOPS</th><td>{{ instance.Iops }}</td></tr>
+        <tr><th>Backup Retention</th><td>{{ instance.BackupRetentionPeriod }} days</td></tr>
+        <tr><th>Master Username</th><td>{{ instance.MasterUsername }}</td></tr>
+        <tr><th>Publicly Accessible</th><td>{{ instance.PubliclyAccessible }}</td></tr>
+        <tr><th>Instance Class</th><td>{{ instance.DBInstanceClass }}</td></tr>
+        <tr><th>Maintenance Window</th><td>{{ instance.PreferredMaintenanceWindow }}</td></tr>
+        <tr><th>Creation Time</th><td>{{ instance.InstanceCreateTime }}</td></tr>
+    </table>
+</div>
+
+{% endblock %}
